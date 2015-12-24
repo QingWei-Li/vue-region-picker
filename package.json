@@ -5,7 +5,6 @@
   "scripts": {
     "start": "webpack-dev-server --inline --env=dev --hot --quiet --port 2333",
     "test": "karma start --env=test",
-    "coveralls": "karma start --env=test | coveralls",
     "build": "webpack --progress --env=build"
   },
   "keywords": [
