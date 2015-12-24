@@ -4,13 +4,12 @@ var baseConfig = require('./webpack.base')
 
 module.exports = Object.assign({}, baseConfig, {
   entry: {
-    'component': path.join(__dirname, '/../src/vue-region-picker.vue'),
-    'data': path.join(__dirname, '/../src/china-region.js')
+    main: path.join(__dirname, '/../index.js'),
+    data: path.join(__dirname, '/../data.js')
   },
   output: {
     path: path.join(__dirname, '/../dist'),
-    publicPath: '/dist/',
-    filename: 'RegionPicker.[name].js',
+    filename: '[name].js',
     libraryTarget: 'umd',
     library: ['RegionPicker', '[name]']
   },

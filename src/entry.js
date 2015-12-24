@@ -1,9 +1,17 @@
 import Vue from 'vue'
-import App from './app.vue'
 
 new Vue({ // eslint-disable-line
   el: 'body',
+  replace: false,
   components: {
-    app: App
+    RegionPicker: require('../index')
+  },
+  data () {
+    return {
+      address: {}
+    }
+  },
+  created () {
+    this.region = require('../data')
   }
 })

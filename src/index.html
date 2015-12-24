@@ -5,7 +5,17 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
 <body>
-  <app></app>
+  <div v-text="address | json"></div>
+  <form action="">
+    <region-picker
+      :init="{province:  '广东', city: '广州', district: '海珠'}"
+      :province.sync="address.province"
+      :city.sync="address.city"
+      :district.sync="address.district"
+      :data='region'>
+    </region-picker>
+    <input type="submit">
+  </form>
 </body>
 <script src="/dist/build.js"></script>
 </html>
