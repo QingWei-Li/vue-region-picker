@@ -31,15 +31,14 @@
         <h1>
 <a id="vue-region-picker" class="anchor" href="#vue-region-picker" aria-hidden="true"><span class="octicon octicon-link"></span></a>vue-region-picker</h1>
 
-<p><a href="https://travis-ci.org/QingWei-Li/vue-region-picker"><img src="https://travis-ci.org/QingWei-Li/vue-region-picker.svg" alt="Build Status"></a>
-<a href="https://coveralls.io/github/QingWei-Li/vue-region-picker?branch=master"><img src="https://coveralls.io/repos/QingWei-Li/vue-region-picker/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a></p>
+<p><a href="https://travis-ci.org/QingWei-Li/vue-region-picker"><img src="https://travis-ci.org/QingWei-Li/vue-region-picker.svg" alt="Build Status"></a></p>
 
 <p>A Vue.js Component for picking provinces, cities and districts of China.</p>
 
 <h2>
 <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
 
-<p><a href="http://qingwei-li.github.io/vue-region-picker/example/index.html">HERE</a></p>
+<p><a href="http://qingwei-li.github.io/vue-region-picker/example.html">HERE</a></p>
 
 <h2>
 <a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
@@ -55,7 +54,7 @@
 <li>npm</li>
 </ul>
 
-<div class="highlight highlight-source-shell"><pre>$ npm install vue-region-picker</pre></div>
+<div class="highlight highlight-source-shell"><pre>$ npm install vue-region-picker --save</pre></div>
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
@@ -79,7 +78,7 @@
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Vue <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Vue<span class="pl-pds">'</span></span>);
 <span class="pl-k">var</span> RegionPicker <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>vue-region-picker<span class="pl-pds">'</span></span>);
-<span class="pl-k">var</span> <span class="pl-c1">REGION_DATA</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>vue-region-picker/china-region<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> <span class="pl-c1">REGION_DATA</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>vue-region-picker/data<span class="pl-pds">'</span></span>);
 
 <span class="pl-k">new</span> <span class="pl-en">Vue</span>({
   el<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>body<span class="pl-pds">'</span></span>,
@@ -186,8 +185,8 @@
 <h2>
 <a id="testing-and-building" class="anchor" href="#testing-and-building" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing and Building</h2>
 
-<div class="highlight highlight-source-shell"><pre>npm <span class="pl-c1">test</span>
-npm build</pre></div>
+<div class="highlight highlight-source-shell"><pre>$ npm <span class="pl-c1">test</span>
+$ npm run build</pre></div>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
