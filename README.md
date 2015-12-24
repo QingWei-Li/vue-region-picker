@@ -91,8 +91,8 @@ new Vue({
 ## Testing and Building
 
 ```shell
-npm test
-npm build
+$ npm test
+$ npm build
 ```
 
 ## License

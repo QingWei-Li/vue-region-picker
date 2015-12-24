@@ -5,8 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --inline --env=dev --hot --quiet --port 2333",
     "test": "karma start --env=test",
-    "build": "webpack --progress --env=build",
-    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    "build": "webpack --progress --env=build"
   },
   "keywords": [
     "vue",
@@ -21,8 +20,8 @@
   ],
   "author": "qingwei.li<cinwell.li@gmail.com>",
   "repository": {
-      "type": "git",
-      "url": "git@github.com:QingWei-Li/vue-region-picker.git"
+    "type": "git",
+    "url": "git@github.com:QingWei-Li/vue-region-picker.git"
   },
   "readmeFilename": "README.md",
   "license": "MIT",
@@ -38,19 +37,19 @@
     "chai-jquery": "^2.0.0",
     "css-loader": "^0.21.0",
     "eslint": "^1.10.3",
-    "eslint-plugin-html": "^1.1.0",
     "eslint-loader": "^1.1.1",
+    "eslint-plugin-html": "^1.1.0",
     "file-loader": "^0.8.5",
     "function-bind": "^1.0.2",
     "karma": "^0.13.15",
     "karma-chai": "^0.1.0",
     "karma-chai-jquery": "^1.0.0",
+    "karma-jquery": "^0.1.0",
     "karma-mocha": "^0.2.1",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-sinon": "^1.0.4",
     "karma-sinon-chai": "^1.1.0",
     "karma-sourcemap-loader": "^0.3.6",
-    "karma-jquery": "^0.1.0",
     "karma-webpack": "^1.7.0",
     "lodash": "^3.10.1",
     "minimist": "^1.2.0",
