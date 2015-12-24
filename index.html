@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Vue-region-picker by QingWei-Li</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Vue-region-picker</h1>
+        <p>A Vue.js Component for picking provinces, cities and districts of China. (Vue 省市区三级联动组件)</p>
+
+        <p class="view"><a href="https://github.com/QingWei-Li/vue-region-picker">View the Project on GitHub <small>QingWei-Li/vue-region-picker</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/QingWei-Li/vue-region-picker/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/QingWei-Li/vue-region-picker/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/QingWei-Li/vue-region-picker">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="vue-region-picker" class="anchor" href="#vue-region-picker" aria-hidden="true"><span class="octicon octicon-link"></span></a>vue-region-picker</h1>
+
+<p><a href="https://travis-ci.org/QingWei-Li/vue-region-picker"><img src="https://travis-ci.org/QingWei-Li/vue-region-picker.svg" alt="Build Status"></a>
+<a href="https://coveralls.io/github/QingWei-Li/vue-region-picker?branch=master"><img src="https://coveralls.io/repos/QingWei-Li/vue-region-picker/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a></p>
+
+<p>A Vue.js Component for picking provinces, cities and districts of China.</p>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
+
+<p><a href="http://qingwei-li.github.io/vue-region-picker/example/index.html">HERE</a></p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li><a href="https://github.com/vuejs/vue">Vue</a></li>
+</ul>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<ul>
+<li>npm</li>
+</ul>
+
+<div class="highlight highlight-source-shell"><pre>$ npm install vue-region-picker</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<ul>
+<li>html</li>
+</ul>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">body</span>&gt;
+  &lt;<span class="pl-ent">region</span><span class="pl-e">-picker</span>
+    :<span class="pl-e">province</span>.<span class="pl-e">sync</span>=<span class="pl-s"><span class="pl-pds">"</span>region.province<span class="pl-pds">"</span></span>
+    :<span class="pl-e">city</span>.<span class="pl-e">sync</span>=<span class="pl-s"><span class="pl-pds">"</span>region.city<span class="pl-pds">"</span></span>
+    :<span class="pl-e">district</span>.<span class="pl-e">sync</span>=<span class="pl-s"><span class="pl-pds">"</span>region.district<span class="pl-pds">"</span></span>
+    :<span class="pl-e">data</span>=<span class="pl-s"><span class="pl-pds">"</span>regionData<span class="pl-pds">"</span></span>&gt;
+  &lt;/<span class="pl-ent">region</span><span class="pl-e">-picker</span>&gt;
+&lt;/<span class="pl-ent">body</span>&gt;</pre></div>
+
+<ul>
+<li>javascript</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Vue <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Vue<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> RegionPicker <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>vue-region-picker<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> <span class="pl-c1">REGION_DATA</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>vue-region-picker/china-region<span class="pl-pds">'</span></span>);
+
+<span class="pl-k">new</span> <span class="pl-en">Vue</span>({
+  el<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>body<span class="pl-pds">'</span></span>,
+  data<span class="pl-k">:</span> {
+    region<span class="pl-k">:</span> {},
+  },
+  <span class="pl-en">created</span>() {
+    <span class="pl-v">this</span>.<span class="pl-smi">regionData</span> <span class="pl-k">=</span> <span class="pl-c1">REGION_DATA</span>;
+  },
+  components<span class="pl-k">:</span> {
+    RegionPicker<span class="pl-k">:</span> RegionPicker
+  }
+});</pre></div>
+
+<h2>
+<a id="properties" class="anchor" href="#properties" aria-hidden="true"><span class="octicon octicon-link"></span></a>Properties</h2>
+
+<h3>
+<a id="provice" class="anchor" href="#provice" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>provice</code>
+</h3>
+
+<ul>
+<li>Required: <code>required</code>
+</li>
+<li>twoWay: <code>true</code>
+</li>
+</ul>
+
+<h3>
+<a id="city" class="anchor" href="#city" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>city</code>
+</h3>
+
+<ul>
+<li>Required: <code>required</code>
+</li>
+<li>twoWay: <code>true</code>
+</li>
+</ul>
+
+<h3>
+<a id="district" class="anchor" href="#district" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>district</code>
+</h3>
+
+<ul>
+<li>Required: <code>required</code>
+</li>
+<li>twoWay: <code>true</code>
+</li>
+</ul>
+
+<h3>
+<a id="data" class="anchor" href="#data" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>data</code>
+</h3>
+
+<ul>
+<li>Required: <code>required</code>
+</li>
+<li>Type: <code>Object</code>
+</li>
+</ul>
+
+<h3>
+<a id="placeholder" class="anchor" href="#placeholder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>placeholder</code>
+</h3>
+
+<ul>
+<li>Type: <code>Object</code>
+</li>
+<li>Default: <code>{ province: '请选择', city: '请选择', district: '请选择'}</code>
+</li>
+</ul>
+
+<h3>
+<a id="init" class="anchor" href="#init" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>init</code>
+</h3>
+
+<ul>
+<li>Type: <code>Object</code>
+</li>
+</ul>
+
+<h3>
+<a id="auto" class="anchor" href="#auto" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>auto</code>
+</h3>
+
+<ul>
+<li>Type: <code>Boolean</code>
+</li>
+<li>Default: <code>false</code>
+</li>
+</ul>
+
+<h3>
+<a id="required" class="anchor" href="#required" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>required</code>
+</h3>
+
+<ul>
+<li>Type: <code>Boolean</code>
+</li>
+<li>Default: <code>false</code>
+</li>
+</ul>
+
+<h2>
+<a id="testing-and-building" class="anchor" href="#testing-and-building" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing and Building</h2>
+
+<div class="highlight highlight-source-shell"><pre>npm <span class="pl-c1">test</span>
+npm build</pre></div>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/QingWei-Li">QingWei-Li</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
