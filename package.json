@@ -5,7 +5,8 @@
   "scripts": {
     "start": "webpack-dev-server --inline --env=dev --hot --quiet --port 2333",
     "test": "karma start --env=test",
-    "build": "webpack --progress --env=build"
+    "build": "webpack --progress --env=build",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
   },
   "keywords": [
     "vue",

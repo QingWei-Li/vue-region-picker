@@ -3,4 +3,5 @@ node_js:
    - "4.2.1"
 before_install:
   - npm install coveralls -g
-after_success: coveralls
+script: "npm run-script test-travis"
+after_script: "npm install coveralls && cat ./coverage/lcov.info | coveralls"
