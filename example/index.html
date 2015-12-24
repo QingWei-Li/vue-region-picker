@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue Region Picker Demo - Qingwei.Li</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<body>
+  <demo1>
+    <h1>quick</h1>
+    <label>result: <span v-text="address | json"></span></label>
+    <region-picker
+      :province.sync="address.province"
+      :city.sync="address.city"
+      :district.sync="address.district"
+      :data="region">
+    </region-picker>
+  </demo1>
+</body>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.min.js"></script>
+<script src="./../dist/RegionPicker.component.js"></script>
+<script src="./../dist/RegionPicker.data.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: 'demo1',
+    data: function () {
+      return {
+        address: {}
+      }
+    },
+    created: function () {
+      this.region = RegionPicker.data
+    },
+    components: {
+      regionPicker: RegionPicker.component
+    }
+  })
+</script>
+</html>
