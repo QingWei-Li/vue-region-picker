@@ -30,7 +30,7 @@ describe ('RegionPicker component', () => {
           }
         },
         created () {
-          this.region = require('../src/china-region.js')
+          this.region = require('../src/china-region.json')
         }
       })
     }
@@ -101,17 +101,17 @@ describe ('RegionPicker component', () => {
     })
 
     it ('city select is visible when province select is change', done => {
-      vm.$refs.picker.provinceSelected = ['110000', '北京']
+      vm.$refs.picker.provinceSelected = ['440000', '广东省']
       vm.$nextTick(() => {
         expect($(vm.$el).find('select:visible')).to.have.length.above(2)
         done()
       })
     })
 
-    it ('city select is hidden when province select is change', done => {
+    it ('district select is hidden when province select is change', done => {
       vm.$refs.picker.provinceSelected = ['820000', '澳门特别行政区']
       vm.$nextTick(() => {
-        expect($(vm.$el).find('select:visible')).to.have.length(1)
+        expect($(vm.$el).find('select:visible')).to.have.length(2)
         done()
       })
     })
@@ -131,7 +131,9 @@ describe ('RegionPicker component', () => {
     })
 
     it ('other select is required when has options', done => {
-      vm.$refs.picker.provinceSelected = ['110000', '北京']
+      // 原先的 '北京' 换了数据文件后通不过测试，是因为 city 中的两个选项有的有地区有的没有
+      // 然后不同浏览器遍历对象的顺序不太一样导致如果选中没有地区的城市就通不过测试
+      vm.$refs.picker.provinceSelected = ['440000', '广东省']
       vm.$nextTick(() => {
         _.each(selects, select => {
           expect(select.required).to.be.true
@@ -143,9 +145,7 @@ describe ('RegionPicker component', () => {
     it ('other select is required when hasn\'t options', done => {
       vm.$refs.picker.provinceSelected = ['820000', '澳门特别行政区']
       vm.$nextTick(() => {
-        _.each(_.drop(selects), select => {
-          expect(select.required).to.be.false
-        })
+        expect(_.last(selects).required).to.be.false
         done()
       })
     })

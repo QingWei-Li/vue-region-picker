@@ -14,6 +14,11 @@ module.exports = {
         loader: 'babel!eslint'
       },
       {
+        test: /\.json$/,
+        exclude: /node_modules/,
+        loader: 'json'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue!eslint'
       }

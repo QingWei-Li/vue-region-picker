@@ -60,32 +60,51 @@ new Vue({
 - Required: `required`
 - twoWay: `true`
 
+Bind province. DON'T use it set the inital value, please use `init` prop.
+
 ### `city`
 - Required: `required`
 - twoWay: `true`
+
+Bind city. DON'T use it set the inital value, please use `init` prop.
 
 ### `district`
 - Required: `required`
 - twoWay: `true`
 
+Bind district. DON'T use it set the inital value, please use `init` prop.
+
 ### `data`
 - Required: `required`
 - Type: `Object`
+
+China Region data. Of course, you can customize.
+Data Source: [https://github.com/fengyuanchen/distpicker](https://github.com/fengyuanchen/distpicker)
 
 ### `placeholder`
 - Type: `Object`
 - Default: `{ province: '请选择', city: '请选择', district: '请选择'}`
 
+Show placeholder.
+
 ### `init`
 - Type: `Object`
+
+Bind the inital value. e.g. `init:{province: '广州', city:'广东', district: '海珠'}`,
+ Don't worry about whether or not to write complete, It will own resolve. Do NOT
+ use the `province`, `city` or `district` properties to set an initial value, It is useless.
 
 ### `auto`
 - Type: `Boolean`
 - Default: `false`
 
+If empty option will automatically hide.
+
 ### `required`
 - Type: `Boolean`
 - Default: `false`
+
+Required if the option is not empty.
 
 ## Testing and Building
 

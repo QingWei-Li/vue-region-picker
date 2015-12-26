@@ -10,6 +10,11 @@ module.exports = Object.assign({}, baseConfig, {
         loader: 'babel'
       },
       {
+        test: /\.json$/,
+        exclude: /node_modules/,
+        loader: 'json'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue'
       }

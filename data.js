@@ -1,2 +1,2 @@
-var ChinaRegion = require('json!./src/china-region.json')
+var ChinaRegion = require('./dist/data')
 module.exports = ChinaRegion

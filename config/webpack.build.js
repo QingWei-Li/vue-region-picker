@@ -4,8 +4,8 @@ var baseConfig = require('./webpack.base')
 
 module.exports = Object.assign({}, baseConfig, {
   entry: {
-    main: path.join(__dirname, '/../index.js'),
-    data: path.join(__dirname, '/../data.js')
+    main: path.join(__dirname, '/../src/vue-region-picker.vue'),
+    data: path.join(__dirname, '/../src/china-region.json')
   },
   output: {
     path: path.join(__dirname, '/../dist'),

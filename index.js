@@ -1,2 +1,2 @@
-var RequirePicker = require('./src/vue-region-picker.vue')
+var RequirePicker = require('./dist/main')
 module.exports = RequirePicker

@@ -1,7 +1,7 @@
 <script>
 /**
  * vue-region-picker
- * @version 1.0.0
+ * @version 1.1.1
  * @author qingwei.li<cinwel.li@gmail.com>
  * @date 2015-12-17
  *
@@ -18,7 +18,7 @@
  *
  */
 module.exports = {
-  version: '1.0.0',
+  version: '1.1.1',
   name: 'RegionPicker',
   data () {
     return {
@@ -87,12 +87,10 @@ module.exports = {
   methods: {
     _filter (pid) {
       let result = []
+      let items = this.data[pid]
 
-      for (let code in this.data) {
-        if (this.data.hasOwnProperty(code) &&
-            this.data[code][1] === pid) {
-          result.push([code, this.data[code][0]])
-        }
+      for (let code in items) {
+        result.push([code, items[code]])
       }
 
       return result
@@ -121,10 +119,10 @@ module.exports = {
 
     provinces () {
       if (this.init.province && typeof this.init.province === 'string') {
-        return this._selected('086', 'province')
+        return this._selected('86', 'province')
       }
 
-      return this._filter('086')
+      return this._filter('86')
     },
 
     cities () {
