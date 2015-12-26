@@ -2,7 +2,22 @@ var baseConfig = require('./webpack.base')
 
 module.exports = Object.assign({}, baseConfig, {
   devtool: 'eval',
+  reporters: [
+    'progress',
+    'coverage'
+  ],
+  coverageReporter: {
+    type: 'text'
+  },
   module: {
+    postLoaders: [
+      {
+        test: /\.js$/,
+        // exclude this dirs from coverage
+        exclude: /(test|node_modules)/,
+        loader: 'istanbul-instrumenter'
+      }
+    ],
     loaders: [
       {
         test: /\.js$/,
