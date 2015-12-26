@@ -31,14 +31,16 @@
         <h1>
 <a id="vue-region-picker" class="anchor" href="#vue-region-picker" aria-hidden="true"><span class="octicon octicon-link"></span></a>vue-region-picker</h1>
 
-<p><a href="https://travis-ci.org/QingWei-Li/vue-region-picker"><img src="https://travis-ci.org/QingWei-Li/vue-region-picker.svg" alt="Build Status"></a></p>
+<p><a href="https://travis-ci.org/QingWei-Li/vue-region-picker"><img src="https://travis-ci.org/QingWei-Li/vue-region-picker.svg" alt="Build Status"></a>
+<a href="https://coveralls.io/github/QingWei-Li/vue-region-picker?branch=master"><img src="https://coveralls.io/repos/QingWei-Li/vue-region-picker/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a>
+<a href="https://nodei.co/npm/vue-region-picker/"><img src="https://nodei.co/npm/vue-region-picker.png" alt="NPM"></a></p>
 
 <p>A Vue.js Component for picking provinces, cities and districts of China.</p>
 
 <h2>
 <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
 
-<p><a href="http://qingwei-li.github.io/vue-region-picker/example.html">HERE</a></p>
+<p><a href="http://qingwei-li.github.io/vue-region-picker/demo.html">HERE</a></p>
 
 <h2>
 <a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
@@ -107,6 +109,8 @@
 </li>
 </ul>
 
+<p>Bind province. DON'T use it set the inital value, please use <code>init</code> prop.</p>
+
 <h3>
 <a id="city" class="anchor" href="#city" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>city</code>
 </h3>
@@ -117,6 +121,8 @@
 <li>twoWay: <code>true</code>
 </li>
 </ul>
+
+<p>Bind city. DON'T use it set the inital value, please use <code>init</code> prop.</p>
 
 <h3>
 <a id="district" class="anchor" href="#district" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>district</code>
@@ -129,6 +135,8 @@
 </li>
 </ul>
 
+<p>Bind district. DON'T use it set the inital value, please use <code>init</code> prop.</p>
+
 <h3>
 <a id="data" class="anchor" href="#data" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>data</code>
 </h3>
@@ -139,6 +147,9 @@
 <li>Type: <code>Object</code>
 </li>
 </ul>
+
+<p>China Region data. Of course, you can customize.
+Data Source: <a href="https://github.com/fengyuanchen/distpicker">https://github.com/fengyuanchen/distpicker</a></p>
 
 <h3>
 <a id="placeholder" class="anchor" href="#placeholder" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>placeholder</code>
@@ -151,6 +162,8 @@
 </li>
 </ul>
 
+<p>Show placeholder.</p>
+
 <h3>
 <a id="init" class="anchor" href="#init" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>init</code>
 </h3>
@@ -159,6 +172,10 @@
 <li>Type: <code>Object</code>
 </li>
 </ul>
+
+<p>Bind the inital value. e.g. <code>init:{province: '广州', city:'广东', district: '海珠'}</code>,
+ Don't worry about whether or not to write complete, It will own resolve. Do NOT
+ use the <code>province</code>, <code>city</code> or <code>district</code> properties to set an initial value, It is useless.</p>
 
 <h3>
 <a id="auto" class="anchor" href="#auto" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>auto</code>
@@ -171,6 +188,8 @@
 </li>
 </ul>
 
+<p>If empty option will automatically hide.</p>
+
 <h3>
 <a id="required" class="anchor" href="#required" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>required</code>
 </h3>
@@ -182,6 +201,8 @@
 </li>
 </ul>
 
+<p>Required if the option is not empty.</p>
+
 <h2>
 <a id="testing-and-building" class="anchor" href="#testing-and-building" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing and Building</h2>
 
@@ -191,7 +212,7 @@ $ npm run build</pre></div>
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p>MIT</p>
+<p><a href="https://github.com/QingWei-Li/vue-region-picker/blob/master/LICENSE">WTFPL</a></p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/QingWei-Li">QingWei-Li</a></p>
