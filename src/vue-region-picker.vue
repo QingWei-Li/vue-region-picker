@@ -86,8 +86,8 @@ module.exports = {
 
   methods: {
     _filter (pid) {
-      let result = []
-      let items = this.data[pid]
+      const result = []
+      const items = this.data[pid]
 
       for (let code in items) {
         result.push([code, items[code]])
@@ -97,7 +97,7 @@ module.exports = {
     },
 
     _selected (pid, model) {
-      let items = this._filter(pid)
+      const items = this._filter(pid)
       let index = 0
 
       if (this.init[model] && typeof this.init[model] === 'string') {
