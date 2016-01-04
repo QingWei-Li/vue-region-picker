@@ -150,7 +150,7 @@ new Vue({
 ```vue
 <body>
   <region-picker
-    :init="{province: '广东', city: '广州', district: '海珠'}"
+    :placeholder="{province: '选择省份', city: '选择市', district: '选择地区'}"
     :province.sync="region.province"
     :city.sync="region.city"
     :district.sync="region.district"
