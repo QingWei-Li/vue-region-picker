@@ -92,7 +92,7 @@ Show placeholder.
 ### `init`
 - Type: `Object`
 
-Bind the inital value. e.g. `init:{province: '广州', city:'广东', district: '海珠'}`,
+Bind the inital value. e.g. `init:{province: '广东', city:'广州', district: '海珠'}`, or by code `init:{province: 440000, city:'440100', district: '海珠'}`
  Don't worry about whether or not to write complete, It will own resolve. Do NOT
  use the `province`, `city` or `district` properties to set an initial value, It is useless.
 
@@ -107,6 +107,20 @@ If empty option will automatically hide.
 - Default: `false`
 
 Required if the option is not empty.
+
+### `completed`
+- Type: `Boolean`
+- Default: `false`
+
+Allow the return value is complete, it contains an array of code and name.
+
+e.g. `{ "district": [ "440105", "海珠区" ], "city": [ "440100", "广州市" ], "province": [ "440000", "广东省" ] }`
+
+### `disabled`
+- Type: `Boolean`
+- Default: `false`
+
+disabled attribute
 
 ## Testing and Building
 
