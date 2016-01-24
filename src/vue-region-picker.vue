@@ -1,7 +1,7 @@
 <script>
 /**
  * vue-region-picker
- * @version 1.1.1
+ * @version 1.2.1
  * @author qingwei.li<cinwel.li@gmail.com>
  * @date 2015-12-17
  *
@@ -13,12 +13,14 @@
  * @param {object} data - data field is required.
  * @param {object} [init] - initialize value.
  * @param {object} [placeholder] - placeholder
- * @param {boolean} [auto] - auto
+ * @param {boolean} [auto] - auto display select element
+ * @param {boolean} [disabled] - disabled
+ * @param {boolean} [completed] - the return value is complete
  * @param {boolean} [required] - required
  *
  */
 module.exports = {
-  version: '1.1.1',
+  version: '1.2.1',
   name: 'RegionPicker',
   data () {
     return {
@@ -52,7 +54,7 @@ module.exports = {
       },
       validator (object) {
         for (let key in object) {
-          if (typeof object[key] !== 'string') {
+          if (!(typeof object[key] === 'string' || typeof object[key] === 'number')) {
             return false
           }
         }
@@ -61,6 +63,10 @@ module.exports = {
       }
     },
     auto: {
+      type: Boolean,
+      default: false
+    },
+    completed: {
       type: Boolean,
       default: false
     },
@@ -75,6 +81,10 @@ module.exports = {
       }
     },
     required: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     },
@@ -107,6 +117,13 @@ module.exports = {
             break
           }
         }
+      } else if (this.init[model] && typeof this.init[model] === 'number') {
+        for (let key in items) {
+          if (items[key][0].indexOf(this.init[model]) > -1) {
+            index = key
+            break
+          }
+        }
       }
 
       this.$set(`${model}Selected`, items[index] || [])
@@ -118,7 +135,7 @@ module.exports = {
   computed: {
 
     provinces () {
-      if (this.init.province && typeof this.init.province === 'string') {
+      if (this.init.province) {
         return this._selected('86', 'province')
       }
 
@@ -134,15 +151,15 @@ module.exports = {
     },
 
     province () {
-      return this.provinceSelected[1]
+      return this.completed ? this.provinceSelected : this.provinceSelected[1]
     },
 
     city () {
-      return this.citySelected[1]
+      return this.completed ? this.citySelected : this.citySelected[1]
     },
 
     district () {
-      return this.districtSelected[1]
+      return this.completed ? this.districtSelected : this.districtSelected[1]
     }
   }
 }
@@ -153,7 +170,7 @@ module.exports = {
   <div class="region-picker">
     <label class="province">
       <slot name="province"></slot>
-      <select class="province-select" v-model="provinceSelected" :required="required">
+      <select class="province-select" v-model="provinceSelected" :required="required" :disabled="disabled">
         <option value="" v-text="placeholder.province"></option>
         <option v-for="item in provinces" :value="item" v-text="item[1]"></option>
       </select>
@@ -161,7 +178,7 @@ module.exports = {
 
     <label class="city" v-show="!auto || cities.length">
       <slot name="city"></slot>
-      <select class="city-select" v-model="citySelected" :required="required && cities.length > 0">
+      <select class="city-select" v-model="citySelected" :required="required && cities.length > 0" :disabled="disabled">
         <option value="" v-text="placeholder.city"></option>
         <option v-for="item in cities" :value="item" v-text="item[1]"></option>
       </select>
@@ -169,7 +186,7 @@ module.exports = {
 
     <label class="district" v-show="!auto || districts.length">
       <slot name="district"></slot>
-      <select class="district-select" v-model="districtSelected" :required="required && districts.length > 0">
+      <select class="district-select" v-model="districtSelected" :required="required && districts.length > 0" :disabled="disabled">
         <option value="" v-text="placeholder.district"></option>
         <option v-for="item in districts" :value="item" v-text="item[1]"></option>
       </select>
