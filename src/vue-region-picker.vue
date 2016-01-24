@@ -100,7 +100,7 @@ module.exports = {
       const items = this.data[pid]
 
       for (let code in items) {
-        result.push([code, items[code]])
+        result.push([parseInt(code, 10), items[code]])
       }
 
       return result
@@ -119,7 +119,7 @@ module.exports = {
         }
       } else if (this.init[model] && typeof this.init[model] === 'number') {
         for (let key in items) {
-          if (items[key][0].indexOf(this.init[model]) > -1) {
+          if (items[key][0] === this.init[model]) {
             index = key
             break
           }

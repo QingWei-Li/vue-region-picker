@@ -223,13 +223,13 @@ describe ('RegionPicker component', () => {
     it('return value is complete', done => {
       vm.$nextTick(() => {
         expect(vm.address.province).to.have.length(2)
-        expect(vm.address.province[0]).to.have.string('440000')
+        expect(vm.address.province[0]).to.equal(440000)
         expect(vm.address.province[1]).to.have.string('广东')
         expect(vm.address.city).to.have.length(2)
-        expect(vm.address.city[0]).to.have.string('440100')
+        expect(vm.address.city[0]).to.equal(440100)
         expect(vm.address.city[1]).to.have.string('广州')
         expect(vm.address.district).to.have.length(2)
-        expect(vm.address.district[0]).to.have.string('440105')
+        expect(vm.address.district[0]).to.equal(440105)
         expect(vm.address.district[1]).to.have.string('海珠')
         done()
       })
