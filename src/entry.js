@@ -12,7 +12,11 @@ new Vue({ // eslint-disable-line
   },
   data () {
     return {
-      address: {}
+      address: {
+        province: '广东',
+        city: '北京',
+        district: '天津'
+      }
     }
   },
   created () {

@@ -26,7 +26,17 @@ describe ('RegionPicker component', () => {
         },
         data () {
           return {
-            address: {}
+            address: {},
+            testAddress: {
+              province: '广东',
+              city: '广州',
+              district: '海珠'
+            },
+            wrongAddress: {
+              province: '广州',
+              city: '广东',
+              district: '海珠'
+            }
           }
         },
         created () {
@@ -103,7 +113,7 @@ describe ('RegionPicker component', () => {
     it ('city select is visible when province select is change', done => {
       vm.$refs.picker.provinceSelected = ['440000', '广东省']
       vm.$nextTick(() => {
-        expect($(vm.$el).find('select:visible')).to.have.length.above(2)
+        expect($(vm.$el).find('select:visible')).to.have.length.above(1)
         done()
       })
     })
@@ -136,7 +146,9 @@ describe ('RegionPicker component', () => {
       vm.$refs.picker.provinceSelected = ['440000', '广东省']
       vm.$nextTick(() => {
         _.each(selects, select => {
-          expect(select.required).to.be.true
+          if (select.options.length > 1) {
+            expect(select.required).to.be.true
+          }
         })
         done()
       })
@@ -152,9 +164,10 @@ describe ('RegionPicker component', () => {
 
   })
 
-  describe ('Set intialize value', () => {
+  // init attribute is deprecated.
+  describe ('Set intialize value by "init" attribute', () => {
     before (done => {
-      vm = getVM(`:init="{province:  '广东', city: '广州', district: '海珠'}"`)
+      vm = getVM(`:init="{province: '广东', city: '广州', district: '海珠'}"`)
       selects = $(vm.$el).find('select')
       done()
     })
@@ -172,7 +185,52 @@ describe ('RegionPicker component', () => {
       vm.$refs.picker.init = {province: '上海', city: '北京'}
       vm.$nextTick(() => {
         expect(vm.address.province).to.have.string('上海')
-        expect(vm.address.city).to.not.string('北京')
+        expect(vm.address.city).to.be.undefined
+        done()
+      })
+    })
+
+  })
+
+  describe ('Set intialize value', () => {
+
+    it ('display initalize value', done => {
+      vm = getVM(`:province.sync="testAddress.province" :city.sync="testAddress.city" :district.sync="testAddress.district"`)
+      selects = $(vm.$el).find('select')
+
+      vm.$nextTick(() => {
+        expect(vm.testAddress.province).to.have.string('广东')
+        expect(vm.testAddress.city).to.have.string('广州')
+        expect(vm.testAddress.district).to.have.string('海珠')
+        done()
+      })
+    })
+
+    it ('intialize value is wrong', done => {
+      vm = getVM(`:province.sync="wrongAddress.province" :city.sync="wrongAddress.city" :district.sync="wrongAddress.district"`)
+      selects = $(vm.$el).find('select')
+
+      vm.$refs.picker.$nextTick(() => {
+        expect(vm.wrongAddress.province).to.have.undefined
+        expect(vm.wrongAddress.city).to.have.undefined
+        expect(vm.wrongAddress.district).to.have.undefined
+        done()
+      })
+    })
+
+    it ('dont change value when component is created', done => {
+      vm = getVM(`:province.sync="testAddress.province" :city.sync="testAddress.city" :district.sync="testAddress.district"`)
+      vm.testAddress = {
+        province: '贵州',
+        city:  '黔南',
+        district: '都匀'
+      }
+      selects = $(vm.$el).find('select')
+
+      vm.$refs.picker.$nextTick(() => {
+        expect(vm.$refs.picker.province).to.have.string('广东')
+        expect(vm.$refs.picker.city).to.have.string('广州')
+        expect(vm.$refs.picker.district).to.have.string('海珠')
         done()
       })
     })

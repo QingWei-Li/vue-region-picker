@@ -8,8 +8,7 @@
   <div v-text="address | json"></div>
   <form action="">
     <region-picker
-      completed
-      :init="{province: 440000, city: '广州', district: '海珠'}"
+      required
       :province.sync="address.province"
       :city.sync="address.city"
       :district.sync="address.district"

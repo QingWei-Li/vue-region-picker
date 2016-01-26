@@ -32,7 +32,6 @@ module.exports = {
 
   props: {
     province: {
-      required: true,
       twoWay: true
     },
     city: {
@@ -40,7 +39,6 @@ module.exports = {
       twoWay: true
     },
     district: {
-      required: true,
       twoWay: true
     },
     init: {
@@ -53,13 +51,13 @@ module.exports = {
         }
       },
       validator (object) {
-        for (let key in object) {
-          if (!(typeof object[key] === 'string' || typeof object[key] === 'number')) {
-            return false
+        for (const prop in object) {
+          if (object.hasOwnProperty(prop)) {
+            console.error('"init" attribute is deprecated. Please use province / city / district to set initial value.')
+            break
           }
         }
-
-        return true
+        return object
       }
     },
     auto: {
@@ -106,24 +104,33 @@ module.exports = {
       return result
     },
 
+    // data model: [code, name]
+    _searchIndex (items, model, by) {
+      // by name
+      if (by === 1) {
+        for (let key in items) {
+          if (items[key][by].indexOf(this.init[model]) > -1) {
+            return key
+          }
+        }
+        // by code
+      } else {
+        for (let key in items) {
+          if (items[key][by] === this.init[model]) {
+            return key
+          }
+        }
+      }
+    },
+
     _selected (pid, model) {
       const items = this._filter(pid)
-      let index = 0
+      let index = -1
 
       if (this.init[model] && typeof this.init[model] === 'string') {
-        for (let key in items) {
-          if (items[key][1].indexOf(this.init[model]) > -1) {
-            index = key
-            break
-          }
-        }
+        index = this._searchIndex(items, model, 1)
       } else if (this.init[model] && typeof this.init[model] === 'number') {
-        for (let key in items) {
-          if (items[key][0] === this.init[model]) {
-            index = key
-            break
-          }
-        }
+        index = this._searchIndex(items, model, 0)
       }
 
       this.$set(`${model}Selected`, items[index] || [])
@@ -133,13 +140,8 @@ module.exports = {
   },
 
   computed: {
-
     provinces () {
-      if (this.init.province) {
-        return this._selected('86', 'province')
-      }
-
-      return this._filter('86')
+      return this._selected('86', 'province')
     },
 
     cities () {
@@ -148,18 +150,35 @@ module.exports = {
 
     districts () {
       return this._selected(this.citySelected[0], 'district')
+    }
+  },
+
+  watch: {
+    provinceSelected (value) {
+      this.province = this.completed ? value : value[1]
     },
 
-    province () {
-      return this.completed ? this.provinceSelected : this.provinceSelected[1]
+    citySelected (value) {
+      this.city = this.completed ? value : value[1]
     },
 
-    city () {
-      return this.completed ? this.citySelected : this.citySelected[1]
-    },
+    districtSelected (value) {
+      this.district = this.completed ? value : value[1]
+    }
+  },
 
-    district () {
-      return this.completed ? this.districtSelected : this.districtSelected[1]
+  created () {
+    // 2.0
+    // this.init = {
+    //   province: this.province,
+    //   city: this.city,
+    //   district: this.district
+    // }
+
+    this.init = {
+      province: this.province || this.init.province,
+      city: this.city || this.init.city,
+      district: this.district || this.init.district
     }
   }
 }

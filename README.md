@@ -11,7 +11,7 @@ A Vue.js Component for picking provinces, cities and districts of China.
 [HERE](http://qingwei-li.github.io/vue-region-picker/demo.html)
 
 ## Requirements
-- [Vue](https://github.com/vuejs/vue)
+- [Vue ^1.0.10](https://github.com/vuejs/vue)
 
 ## Install
 - npm
@@ -45,7 +45,10 @@ var REGION_DATA = require('vue-region-picker/data');
 new Vue({
   el: 'body',
   data: {
-    region: {},
+    region: {
+      provice: '广东', // you can set initial value or not.
+      city: 440100, // by code or name.
+    },
   },
   created() {
     this.regionData = REGION_DATA;
@@ -62,19 +65,19 @@ new Vue({
 - Required: `required`
 - twoWay: `true`
 
-Bind province. DON'T use it set the inital value, please use `init` prop.
+Bind province. You can set the initial value or not. Set the initial value by `(number)code` or `(string)name`.
 
 ### `city`
 - Required: `required`
 - twoWay: `true`
 
-Bind city. DON'T use it set the inital value, please use `init` prop.
+Bind city. You can set the initial value or not. Set the initial value by `(number)code` or `(string)name`.
 
 ### `district`
 - Required: `required`
 - twoWay: `true`
 
-Bind district. DON'T use it set the inital value, please use `init` prop.
+Bind district. You can set the initial value or not. Set the initial value by `(number)code` or `(string)name`.
 
 ### `data`
 - Required: `required`
@@ -89,12 +92,12 @@ Data Source: [https://github.com/fengyuanchen/distpicker](https://github.com/fen
 
 Show placeholder.
 
-### `init`
+### ~~`init`~~ **deprecated** (please set initial value by `province\city\district`)
 - Type: `Object`
 
 Bind the inital value. e.g. `init:{province: '广东', city:'广州', district: '海珠'}`, or by code(number) `init:{province: 440000, city: 440100, district: '海珠'}`
- Don't worry about whether or not to write complete, It will own resolve. Do NOT
- use the `province`, `city` or `district` properties to set an initial value, It is useless.
+ Don't worry about whether or not to write complete, It will own resolve. ~~Do NOT
+ use the `province`, `city` or `district` properties to set an initial value, It is useless.~~
 
 ### `auto`
 - Type: `Boolean`
