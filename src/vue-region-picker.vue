@@ -1,7 +1,7 @@
 <script>
 /**
  * vue-region-picker
- * @version 1.2.2
+ * @version 2.0.0
  * @author qingwei.li<cinwel.li@gmail.com>
  * @date 2015-12-17
  *
@@ -20,7 +20,7 @@
  *
  */
 module.exports = {
-  version: '1.2.2',
+  version: '2.0.0',
   name: 'RegionPicker',
   data () {
     return {
@@ -32,6 +32,7 @@ module.exports = {
 
   props: {
     province: {
+      required: true,
       twoWay: true
     },
     city: {
@@ -40,25 +41,6 @@ module.exports = {
     },
     district: {
       twoWay: true
-    },
-    init: {
-      type: Object,
-      default () {
-        return {
-          province: '',
-          city: '',
-          district: ''
-        }
-      },
-      validator (object) {
-        for (const prop in object) {
-          if (object.hasOwnProperty(prop)) {
-            console.error('"init" attribute is deprecated. Please use province / city / district to set initial value.')
-            break
-          }
-        }
-        return object
-      }
     },
     auto: {
       type: Boolean,
@@ -109,31 +91,32 @@ module.exports = {
       // by name
       if (by === 1) {
         for (let key in items) {
-          if (items[key][by].indexOf(this.init[model]) > -1) {
+          if (items[key][by].indexOf(model) > -1) {
             return key
           }
         }
         // by code
       } else {
         for (let key in items) {
-          if (items[key][by] === this.init[model]) {
+          if (items[key][by] === model) {
             return key
           }
         }
       }
     },
 
-    _selected (pid, model) {
+    _selected (pid, modelName) {
       const items = this._filter(pid)
+      const model = this.$get(modelName)
       let index = -1
 
-      if (this.init[model] && typeof this.init[model] === 'string') {
+      if (typeof model === 'string') {
         index = this._searchIndex(items, model, 1)
-      } else if (this.init[model] && typeof this.init[model] === 'number') {
+      } else if (typeof model === 'number') {
         index = this._searchIndex(items, model, 0)
       }
 
-      this.$set(`${model}Selected`, items[index] || [])
+      this.$set(`${modelName}Selected`, items[index] || [])
 
       return items
     }
@@ -164,21 +147,6 @@ module.exports = {
 
     districtSelected (value) {
       this.district = this.completed ? value : value[1]
-    }
-  },
-
-  created () {
-    // 2.0
-    // this.init = {
-    //   province: this.province,
-    //   city: this.city,
-    //   district: this.district
-    // }
-
-    this.init = {
-      province: this.province || this.init.province,
-      city: this.city || this.init.city,
-      district: this.district || this.init.district
     }
   }
 }
