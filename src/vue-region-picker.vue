@@ -1,7 +1,7 @@
 <script>
 /**
  * vue-region-picker
- * @version 1.2.2
+ * @version 2.0.0
  * @author qingwei.li<cinwel.li@gmail.com>
  * @date 2015-12-17
  *
@@ -11,8 +11,8 @@
  * @param {string} city - city field is required.
  * @param {string} district - district field is required.
  * @param {object} data - data field is required.
- * @param {object} [init] - initialize value.
  * @param {object} [placeholder] - placeholder
+ * @param {boolean} [two-select] - only province, city
  * @param {boolean} [auto] - auto display select element
  * @param {boolean} [disabled] - disabled
  * @param {boolean} [completed] - the return value is complete
@@ -20,18 +20,11 @@
  *
  */
 module.exports = {
-  version: '1.2.2',
+  version: '2.0.0',
   name: 'RegionPicker',
-  data () {
-    return {
-      provinceSelected: [],
-      citySelected: [],
-      districtSelected: []
-    }
-  },
-
   props: {
     province: {
+      required: true,
       twoWay: true
     },
     city: {
@@ -41,24 +34,9 @@ module.exports = {
     district: {
       twoWay: true
     },
-    init: {
-      type: Object,
-      default () {
-        return {
-          province: '',
-          city: '',
-          district: ''
-        }
-      },
-      validator (object) {
-        for (const prop in object) {
-          if (object.hasOwnProperty(prop)) {
-            console.error('"init" attribute is deprecated. Please use province / city / district to set initial value.')
-            break
-          }
-        }
-        return object
-      }
+    twoSelect: {
+      type: Boolean,
+      default: false
     },
     auto: {
       type: Boolean,
@@ -109,14 +87,14 @@ module.exports = {
       // by name
       if (by === 1) {
         for (let key in items) {
-          if (items[key][by].indexOf(this.init[model]) > -1) {
+          if (items[key][by].indexOf(model) > -1) {
             return key
           }
         }
         // by code
       } else {
         for (let key in items) {
-          if (items[key][by] === this.init[model]) {
+          if (items[key][by] === model) {
             return key
           }
         }
@@ -127,60 +105,76 @@ module.exports = {
       const items = this._filter(pid)
       let index = -1
 
-      if (this.init[model] && typeof this.init[model] === 'string') {
+      if (typeof model === 'string') {
         index = this._searchIndex(items, model, 1)
-      } else if (this.init[model] && typeof this.init[model] === 'number') {
+      } else if (typeof model === 'number') {
         index = this._searchIndex(items, model, 0)
+      } else if (Array.isArray(model)) {
+        index = this._searchIndex(items, model[0], 0)
       }
 
-      this.$set(`${model}Selected`, items[index] || [])
-
-      return items
+      return items[index] || []
     }
   },
 
   computed: {
     provinces () {
-      return this._selected('86', 'province')
+      return this._filter('86')
     },
 
     cities () {
-      return this._selected(this.provinceSelected[0], 'city')
+      return this._filter(this.provinceSelected[0])
     },
 
     districts () {
-      return this._selected(this.citySelected[0], 'district')
+      return this._filter(this.citySelected[0])
+    },
+
+    provinceSelected: {
+      get () {
+        return this._selected('86', this.$get('province'))
+      },
+
+      set (value) {
+        this.province = this.completed ? value : value[1]
+      }
+    },
+
+    citySelected: {
+      get () {
+        return this._selected(this.provinceSelected[0], this.$get('city'))
+      },
+
+      set (value) {
+        this.city = this.completed ? value : value[1]
+      }
+    },
+
+    districtSelected: {
+      get () {
+        return this._selected(this.citySelected[0], this.$get('district'))
+      },
+
+      set (value) {
+        this.district = this.completed ? value : value[1]
+      }
     }
   },
 
   watch: {
-    provinceSelected (value) {
-      this.province = this.completed ? value : value[1]
+    provinceSelected () {
+      this.$set('citySelected', this.$get('citySelected'))
     },
 
-    citySelected (value) {
-      this.city = this.completed ? value : value[1]
-    },
-
-    districtSelected (value) {
-      this.district = this.completed ? value : value[1]
+    citySelected () {
+      this.$set('districtSelected', this.$get('districtSelected'))
     }
   },
 
-  created () {
-    // 2.0
-    // this.init = {
-    //   province: this.province,
-    //   city: this.city,
-    //   district: this.district
-    // }
-
-    this.init = {
-      province: this.province || this.init.province,
-      city: this.city || this.init.city,
-      district: this.district || this.init.district
-    }
+  ready () {
+    this.$set('provinceSelected', this.$get('provinceSelected'))
   }
+
 }
 
 </script>
@@ -203,7 +197,7 @@ module.exports = {
       </select>
     </label>
 
-    <label class="district" v-show="!auto || districts.length">
+    <label class="district" v-if="!twoSelect" v-show="!auto || districts.length">
       <slot name="district"></slot>
       <select class="district-select" v-model="districtSelected" :required="required && districts.length > 0" :disabled="disabled">
         <option value="" v-text="placeholder.district"></option>

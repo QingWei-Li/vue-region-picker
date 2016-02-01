@@ -11,7 +11,7 @@ A Vue.js Component for picking provinces, cities and districts of China.
 [HERE](http://qingwei-li.github.io/vue-region-picker/demo.html)
 
 ## Requirements
-- [Vue ^1.0.10](https://github.com/vuejs/vue)
+- [Vue ^1.0.16](https://github.com/vuejs/vue)
 
 ## Install
 - npm
@@ -53,34 +53,34 @@ new Vue({
   created() {
     this.regionData = REGION_DATA;
   },
-  components: {
-    RegionPicker: RegionPicker
-  }
+  components: { RegionPicker }
 });
 ```
 
 
 ## Properties
 ### `provice`
-- Required: `required`
+- Type: `Number/String`
+- Required: `true`
 - twoWay: `true`
 
 Bind province. You can set the initial value or not. Set the initial value by `(number)code` or `(string)name`.
 
 ### `city`
-- Required: `required`
+- Type: `Number/String`
+- Required: `true`
 - twoWay: `true`
 
 Bind city. You can set the initial value or not. Set the initial value by `(number)code` or `(string)name`.
 
 ### `district`
-- Required: `required`
+- Type: `Number/String`
 - twoWay: `true`
 
 Bind district. You can set the initial value or not. Set the initial value by `(number)code` or `(string)name`.
 
 ### `data`
-- Required: `required`
+- Required: `true`
 - Type: `Object`
 
 China Region data. Of course, you can customize.
@@ -91,13 +91,6 @@ Data Source: [https://github.com/fengyuanchen/distpicker](https://github.com/fen
 - Default: `{ province: '请选择', city: '请选择', district: '请选择'}`
 
 Show placeholder.
-
-### ~~`init`~~ **deprecated** (please set initial value by `province\city\district`)
-- Type: `Object`
-
-Bind the inital value. e.g. `init:{province: '广东', city:'广州', district: '海珠'}`, or by code(number) `init:{province: 440000, city: 440100, district: '海珠'}`
- Don't worry about whether or not to write complete, It will own resolve. ~~Do NOT
- use the `province`, `city` or `district` properties to set an initial value, It is useless.~~
 
 ### `auto`
 - Type: `Boolean`
@@ -124,6 +117,12 @@ e.g. `{ "district": [ 440105, "海珠区" ], "city": [ 440100, "广州市" ], "p
 - Default: `false`
 
 disabled attribute
+
+### `two-select`
+- Type: `Boolean`
+- Default: `false`
+
+If true, display only `province` and `city`
 
 ## Testing and Building
 

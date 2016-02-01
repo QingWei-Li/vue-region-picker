@@ -13,9 +13,9 @@ new Vue({ // eslint-disable-line
   data () {
     return {
       address: {
-        province: '广东',
-        city: '北京',
-        district: '天津'
+        province: '贵州',
+        city: '黔南',
+        district: ''
       }
     }
   },
