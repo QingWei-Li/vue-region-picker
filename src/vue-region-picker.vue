@@ -192,7 +192,7 @@ module.exports = {
       </select>
     </label>
 
-    <label class="district" v-show="!auto || districts.length">
+    <label class="district" v-show="district && (!auto || districts.length)">
       <slot name="district"></slot>
       <select class="district-select" v-model="districtSelected" :required="required && districts.length > 0" :disabled="disabled">
         <option value="" v-text="placeholder.district"></option>
