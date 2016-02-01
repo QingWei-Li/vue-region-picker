@@ -1,6 +1,6 @@
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/QingWei-Li/vue-region-picker/master/dist/main.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/QingWei-Li/vue-region-picker/master/dist/data.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
+<script type="text/javascript" src="https://rawgit.com/QingWei-Li/vue-region-picker/master/dist/main.js"></script>
+<script type="text/javascript" src="https://rawgit.com/QingWei-Li/vue-region-picker/master/dist/data.js"></script>
 <link rel="stylesheet" href="stylesheets/github-light.css">
 
 # Basic
@@ -107,33 +107,69 @@ new Vue({
 ----------
 
 # Set initial value
+
+html
+
 ```vue
 <body>
   <region-picker
-    :init="{province: '广东', city: '广州', district: '海珠'}"
     :province.sync="region.province"
     :city.sync="region.city"
     :district.sync="region.district"
     :data="regionData">
   </region-picker>
+
+  <div v-text="region | json"></div>
 </body>
+```
+
+javascript
+
+```javascript
+var Vue = require('Vue');
+var RegionPicker = require('vue-region-picker');
+var REGION_DATA = require('vue-region-picker/data');
+
+new Vue({
+  el: 'body',
+  data: {
+    region: {
+      province: '广东', // 可以通过名字，不需要填写完整
+      city: 440300, // 也可以通过 (number) code
+      district: '钢铁侠' // 填写错误的信息默认不处理
+    },
+  },
+  created() {
+    this.regionData = REGION_DATA;
+  },
+  components: {
+    RegionPicker: RegionPicker
+  }
+});
 ```
 
 <demo3>
   <region-picker
-    :init="{province: '广东', city: '广州', district: '海珠'}"
     :province.sync="region.province"
     :city.sync="region.city"
     :district.sync="region.district"
     :data="regionData">
   </region-picker>
+  <input type="text" v-model="region.province">
+  <input type="text" v-model="region.city">
+  <input type="text" v-model="region.district">
 </demo3>
 
 <script>
 new Vue({
   el: 'demo3',
+  replace: false,
   data: {
-    region: {},
+    region: {
+      province: '广东',
+      city: 440300,
+      district: '钢铁侠'
+    },
   },
   created() {
     this.regionData = RegionPicker.data;
@@ -185,6 +221,46 @@ new Vue({
 </script>
 
 --------
+
+# two select 二级联动(province, city)
+```vue
+<body>
+  <region-picker
+    two-select
+    :province.sync="region.province"
+    :city.sync="region.city"
+    :district.sync="region.district"
+    :data="regionData">
+  </region-picker>
+</body>
+```
+
+<demo5>
+  <region-picker
+    two-select
+    :province.sync="region.province"
+    :city.sync="region.city"
+    :district.sync="region.district"
+    :data="regionData">
+  </region-picker>
+</demo5>
+
+<script>
+new Vue({
+  el: 'demo5',
+  data: {
+    region: {},
+  },
+  created() {
+    this.regionData = RegionPicker.data;
+  },
+  components: {
+    RegionPicker: RegionPicker.main
+  }
+});
+</script>
+
+-------
 
 # you can use globals
 

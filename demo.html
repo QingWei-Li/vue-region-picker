@@ -1077,11 +1077,11 @@ body .markdown-body
 .codehilite .vi{color:teal}
 .codehilite .il{color:#009999}
 .codehilite .gc{color:#999;background-color:#EAF2F5}
-</style><title>demo</title></head><body><article class="markdown-body"><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.min.js"></script>
+</style><title>demo</title></head><body><article class="markdown-body"><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
 
-<script type="text/javascript" src="https://cdn.rawgit.com/QingWei-Li/vue-region-picker/master/dist/main.js"></script>
+<script type="text/javascript" src="https://rawgit.com/QingWei-Li/vue-region-picker/master/dist/main.js"></script>
 
-<script type="text/javascript" src="https://cdn.rawgit.com/QingWei-Li/vue-region-picker/master/dist/data.js"></script>
+<script type="text/javascript" src="https://rawgit.com/QingWei-Li/vue-region-picker/master/dist/data.js"></script>
 
 <p><link rel="stylesheet" href="/Users/qingwei/Documents/github/vue-region-picker/stylesheets/github-light.css"></p>
 <h1 id="basic"><a name="user-content-basic" href="#basic" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Basic</h1>
@@ -1180,32 +1180,65 @@ new Vue({
 
 <hr />
 <h1 id="set-initial-value"><a name="user-content-set-initial-value" href="#set-initial-value" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Set initial value</h1>
+<p>html</p>
 <div class="codehilite"><pre><span class="nt">&lt;body&gt;</span>
   <span class="nt">&lt;region-picker</span>
-    <span class="na">:init=</span><span class="s">&quot;{province: &#39;广东&#39;, city: &#39;广州&#39;, district: &#39;海珠&#39;}&quot;</span>
     <span class="na">:province.sync=</span><span class="s">&quot;region.province&quot;</span>
     <span class="na">:city.sync=</span><span class="s">&quot;region.city&quot;</span>
     <span class="na">:district.sync=</span><span class="s">&quot;region.district&quot;</span>
     <span class="na">:data=</span><span class="s">&quot;regionData&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;/region-picker&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">v-text=</span><span class="s">&quot;region | json&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
+</pre></div>
+
+
+<p>javascript</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">Vue</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;Vue&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">RegionPicker</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;vue-region-picker&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">REGION_DATA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;vue-region-picker/data&#39;</span><span class="p">);</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;body&#39;</span><span class="p">,</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">region</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">province</span><span class="o">:</span> <span class="s1">&#39;广东&#39;</span><span class="p">,</span> <span class="c1">// 可以通过名字，不需要填写完整</span>
+      <span class="nx">city</span><span class="o">:</span> <span class="mi">440300</span><span class="p">,</span> <span class="c1">// 也可以通过 (number) code</span>
+      <span class="nx">district</span><span class="o">:</span> <span class="s1">&#39;钢铁侠&#39;</span> <span class="c1">// 填写错误的信息默认不处理</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">regionData</span> <span class="o">=</span> <span class="nx">REGION_DATA</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">RegionPicker</span><span class="o">:</span> <span class="nx">RegionPicker</span>
+  <span class="p">}</span>
+<span class="p">});</span>
 </pre></div>
 
 
 <p><demo3><br />
   <region-picker
-    :init="{province: '广东', city: '广州', district: '海珠'}"
     :province.sync="region.province"
     :city.sync="region.city"
     :district.sync="region.district"
     :data="regionData"><br />
   </region-picker><br />
+  <input type="text" v-model="region.province"><br />
+  <input type="text" v-model="region.city"><br />
+  <input type="text" v-model="region.district"><br />
 </demo3></p>
 <script>
 new Vue({
   el: 'demo3',
+  replace: false,
   data: {
-    region: {},
+    region: {
+      province: '广东',
+      city: 440300,
+      district: '钢铁侠'
+    },
   },
   created() {
     this.regionData = RegionPicker.data;
@@ -1242,6 +1275,44 @@ new Vue({
 <script>
 new Vue({
   el: 'demo4',
+  data: {
+    region: {},
+  },
+  created() {
+    this.regionData = RegionPicker.data;
+  },
+  components: {
+    RegionPicker: RegionPicker.main
+  }
+});
+</script>
+
+<hr />
+<h1 id="two-select-province-city"><a name="user-content-two-select-province-city" href="#two-select-province-city" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>two select 二级联动(province, city)</h1>
+<div class="codehilite"><pre><span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;region-picker</span>
+    <span class="err">two-select</span>
+    <span class="na">:province.sync=</span><span class="s">&quot;region.province&quot;</span>
+    <span class="na">:city.sync=</span><span class="s">&quot;region.city&quot;</span>
+    <span class="na">:district.sync=</span><span class="s">&quot;region.district&quot;</span>
+    <span class="na">:data=</span><span class="s">&quot;regionData&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/region-picker&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+
+
+<p><demo5><br />
+  <region-picker
+    two-select
+    :province.sync="region.province"
+    :city.sync="region.city"
+    :district.sync="region.district"
+    :data="regionData"><br />
+  </region-picker><br />
+</demo5></p>
+<script>
+new Vue({
+  el: 'demo5',
   data: {
     region: {},
   },
