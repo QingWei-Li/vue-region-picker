@@ -12,6 +12,7 @@
  * @param {string} district - district field is required.
  * @param {object} data - data field is required.
  * @param {object} [placeholder] - placeholder
+ * @param {boolean} [two-select] - only province, city
  * @param {boolean} [auto] - auto display select element
  * @param {boolean} [disabled] - disabled
  * @param {boolean} [completed] - the return value is complete
@@ -32,6 +33,10 @@ module.exports = {
     },
     district: {
       twoWay: true
+    },
+    twoSelect: {
+      type: Boolean,
+      default: false
     },
     auto: {
       type: Boolean,
@@ -192,7 +197,7 @@ module.exports = {
       </select>
     </label>
 
-    <label class="district" v-show="district && (!auto || districts.length)">
+    <label class="district" v-if="!twoSelect" v-show="!auto || districts.length">
       <slot name="district"></slot>
       <select class="district-select" v-model="districtSelected" :required="required && districts.length > 0" :disabled="disabled">
         <option value="" v-text="placeholder.district"></option>

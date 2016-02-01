@@ -268,10 +268,11 @@ describe ('RegionPicker component', () => {
 
   describe('only two select', done => {
     before(done => {
-      vm = getVM(`:province.sync="address.province" :city.sync="address.city"`)
+      vm = getVM(`two-select :province.sync="address.province" :city.sync="address.city" :district.sync="address.district"`)
       vm.address = {
         province: '广东',
-        city: '广州'
+        city: '广州',
+        district: '海珠'
       }
       selects = $(vm.$el).find(`select`)
       done()
@@ -282,7 +283,6 @@ describe ('RegionPicker component', () => {
         expect($(vm.$el).find('select:visible')).to.have.length(2)
         expect(vm.address.province).to.have.string('广东')
         expect(vm.address.city).to.have.string('广州')
-        expect(vm.address.district).to.have.undefined
         done()
       })
     })

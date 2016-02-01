@@ -53,9 +53,7 @@ new Vue({
   created() {
     this.regionData = REGION_DATA;
   },
-  components: {
-    RegionPicker: RegionPicker
-  }
+  components: { RegionPicker }
 });
 ```
 
@@ -92,13 +90,6 @@ Data Source: [https://github.com/fengyuanchen/distpicker](https://github.com/fen
 
 Show placeholder.
 
-### ~~`init`~~ **deprecated** (please set initial value by `province\city\district`)
-- Type: `Object`
-
-Bind the inital value. e.g. `init:{province: '广东', city:'广州', district: '海珠'}`, or by code(number) `init:{province: 440000, city: 440100, district: '海珠'}`
- Don't worry about whether or not to write complete, It will own resolve. ~~Do NOT
- use the `province`, `city` or `district` properties to set an initial value, It is useless.~~
-
 ### `auto`
 - Type: `Boolean`
 - Default: `false`
@@ -124,6 +115,12 @@ e.g. `{ "district": [ 440105, "海珠区" ], "city": [ 440100, "广州市" ], "p
 - Default: `false`
 
 disabled attribute
+
+### `two-select`
+- Type: `Boolean`
+- Default: `false`
+
+If true, display only `province` and `city`
 
 ## Testing and Building
 

@@ -14,7 +14,8 @@ new Vue({ // eslint-disable-line
     return {
       address: {
         province: '贵州',
-        city: '黔南'
+        city: '黔南',
+        district: ''
       }
     }
   },
