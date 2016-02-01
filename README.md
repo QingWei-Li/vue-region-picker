@@ -60,25 +60,27 @@ new Vue({
 
 ## Properties
 ### `provice`
-- Required: `required`
+- Type: `Number/String`
+- Required: `true`
 - twoWay: `true`
 
 Bind province. You can set the initial value or not. Set the initial value by `(number)code` or `(string)name`.
 
 ### `city`
-- Required: `required`
+- Type: `Number/String`
+- Required: `true`
 - twoWay: `true`
 
 Bind city. You can set the initial value or not. Set the initial value by `(number)code` or `(string)name`.
 
 ### `district`
-- Required: `required`
+- Type: `Number/String`
 - twoWay: `true`
 
 Bind district. You can set the initial value or not. Set the initial value by `(number)code` or `(string)name`.
 
 ### `data`
-- Required: `required`
+- Required: `true`
 - Type: `Object`
 
 China Region data. Of course, you can customize.
