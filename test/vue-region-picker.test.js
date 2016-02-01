@@ -164,34 +164,6 @@ describe ('RegionPicker component', () => {
 
   })
 
-  // init attribute is deprecated.
-  describe ('Set intialize value by "init" attribute', () => {
-    before (done => {
-      vm = getVM(`:init="{province: '广东', city: '广州', district: '海珠'}"`)
-      selects = $(vm.$el).find('select')
-      done()
-    })
-
-    it ('display initalize value', done => {
-      vm.$nextTick(() => {
-        expect(vm.address.province).to.have.string('广东')
-        expect(vm.address.city).to.have.string('广州')
-        expect(vm.address.district).to.have.string('海珠')
-        done()
-      })
-    })
-
-    it ('intialize value is wrong', done => {
-      vm.$refs.picker.init = {province: '上海', city: '北京'}
-      vm.$nextTick(() => {
-        expect(vm.address.province).to.have.string('上海')
-        expect(vm.address.city).to.be.undefined
-        done()
-      })
-    })
-
-  })
-
   describe ('Set intialize value', () => {
 
     it ('display initalize value', done => {
@@ -218,7 +190,7 @@ describe ('RegionPicker component', () => {
       })
     })
 
-    it ('dont change value when component is created', done => {
+    it ('change value', done => {
       vm = getVM(`:province.sync="testAddress.province" :city.sync="testAddress.city" :district.sync="testAddress.district"`)
       vm.testAddress = {
         province: '贵州',
@@ -228,9 +200,9 @@ describe ('RegionPicker component', () => {
       selects = $(vm.$el).find('select')
 
       vm.$refs.picker.$nextTick(() => {
-        expect(vm.$refs.picker.province).to.have.string('广东')
-        expect(vm.$refs.picker.city).to.have.string('广州')
-        expect(vm.$refs.picker.district).to.have.string('海珠')
+        expect(vm.$refs.picker.province).to.have.string('贵州')
+        expect(vm.$refs.picker.city).to.have.string('黔南')
+        expect(vm.$refs.picker.district).to.have.string('都匀')
         done()
       })
     })
@@ -273,57 +245,22 @@ describe ('RegionPicker component', () => {
 
   describe('Set "completed" attribute', done => {
     before(done => {
-      vm = getVM(`completed :init="{province: '广东', city: '广州', district: '海珠'}"`)
+      vm = getVM(`completed :province.sync="testAddress.province" :city.sync="testAddress.city" :district.sync="testAddress.district"`)
       selects = $(vm.$el).find(`select`)
       done()
     })
 
     it('return value is complete', done => {
       vm.$nextTick(() => {
-        expect(vm.address.province).to.have.length(2)
-        expect(vm.address.province[0]).to.equal(440000)
-        expect(vm.address.province[1]).to.have.string('广东')
-        expect(vm.address.city).to.have.length(2)
-        expect(vm.address.city[0]).to.equal(440100)
-        expect(vm.address.city[1]).to.have.string('广州')
-        expect(vm.address.district).to.have.length(2)
-        expect(vm.address.district[0]).to.equal(440105)
-        expect(vm.address.district[1]).to.have.string('海珠')
-        done()
-      })
-    })
-  })
-
-  describe('intialize value by code', done => {
-    before(done => {
-      vm = getVM(`:init="{province: 440000, city: 440100, district: 440105}"`)
-      selects = $(vm.$el).find(`select`)
-      done()
-    })
-
-    it ('display initalize value', done => {
-      vm.$nextTick(() => {
-        expect(vm.address.province).to.have.string('广东')
-        expect(vm.address.city).to.have.string('广州')
-        expect(vm.address.district).to.have.string('海珠')
-        done()
-      })
-    })
-
-  })
-
-  describe('intialize value by code and name', done => {
-    before(done => {
-      vm = getVM(`:init="{province: 440000, city: 440100, district: '海珠'}"`)
-      selects = $(vm.$el).find(`select`)
-      done()
-    })
-
-    it ('display initalize value', done => {
-      vm.$nextTick(() => {
-        expect(vm.address.province).to.have.string('广东')
-        expect(vm.address.city).to.have.string('广州')
-        expect(vm.address.district).to.have.string('海珠')
+        expect(vm.testAddress.province).to.have.length(2)
+        expect(vm.testAddress.province[0]).to.equal(440000)
+        expect(vm.testAddress.province[1]).to.have.string('广东')
+        expect(vm.testAddress.city).to.have.length(2)
+        expect(vm.testAddress.city[0]).to.equal(440100)
+        expect(vm.testAddress.city[1]).to.have.string('广州')
+        expect(vm.testAddress.district).to.have.length(2)
+        expect(vm.testAddress.district[0]).to.equal(440105)
+        expect(vm.testAddress.district[1]).to.have.string('海珠')
         done()
       })
     })

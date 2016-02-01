@@ -11,7 +11,6 @@
  * @param {string} city - city field is required.
  * @param {string} district - district field is required.
  * @param {object} data - data field is required.
- * @param {object} [init] - initialize value.
  * @param {object} [placeholder] - placeholder
  * @param {boolean} [auto] - auto display select element
  * @param {boolean} [disabled] - disabled
@@ -22,14 +21,6 @@
 module.exports = {
   version: '2.0.0',
   name: 'RegionPicker',
-  data () {
-    return {
-      provinceSelected: [],
-      citySelected: [],
-      districtSelected: []
-    }
-  },
-
   props: {
     province: {
       required: true,
@@ -105,50 +96,80 @@ module.exports = {
       }
     },
 
-    _selected (pid, modelName) {
+    _selected (pid, model) {
       const items = this._filter(pid)
-      const model = this.$get(modelName)
       let index = -1
 
       if (typeof model === 'string') {
         index = this._searchIndex(items, model, 1)
       } else if (typeof model === 'number') {
         index = this._searchIndex(items, model, 0)
+      } else if (Array.isArray(model)) {
+        index = this._searchIndex(items, model[0], 0)
       }
 
-      this.$set(`${modelName}Selected`, items[index] || [])
-
-      return items
+      return items[index] || []
     }
   },
 
   computed: {
     provinces () {
-      return this._selected('86', 'province')
+      return this._filter('86')
     },
 
     cities () {
-      return this._selected(this.provinceSelected[0], 'city')
+      return this._filter(this.provinceSelected[0])
     },
 
     districts () {
-      return this._selected(this.citySelected[0], 'district')
+      return this._filter(this.citySelected[0])
+    },
+
+    provinceSelected: {
+      get () {
+        return this._selected('86', this.$get('province'))
+      },
+
+      set (value) {
+        this.province = this.completed ? value : value[1]
+      }
+    },
+
+    citySelected: {
+      get () {
+        return this._selected(this.provinceSelected[0], this.$get('city'))
+      },
+
+      set (value) {
+        this.city = this.completed ? value : value[1]
+      }
+    },
+
+    districtSelected: {
+      get () {
+        return this._selected(this.citySelected[0], this.$get('district'))
+      },
+
+      set (value) {
+        this.district = this.completed ? value : value[1]
+      }
     }
   },
 
   watch: {
-    provinceSelected (value) {
-      this.province = this.completed ? value : value[1]
+    provinceSelected () {
+      this.$set('citySelected', this.$get('citySelected'))
     },
 
-    citySelected (value) {
-      this.city = this.completed ? value : value[1]
-    },
-
-    districtSelected (value) {
-      this.district = this.completed ? value : value[1]
+    citySelected () {
+      this.$set('districtSelected', this.$get('districtSelected'))
     }
+  },
+
+  ready () {
+    this.$set('provinceSelected', this.$get('provinceSelected'))
   }
+
 }
 
 </script>
