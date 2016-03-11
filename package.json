@@ -27,7 +27,7 @@
   "readmeFilename": "README.md",
   "license": "WTFPL",
   "peerDependencies": {
-    "vue": "^1.0.16"
+    "vue": "^1.0.12"
   },
   "devDependencies": {
     "babel-core": "^5.8.34",

@@ -11,7 +11,7 @@ A Vue.js Component for picking provinces, cities and districts of China.
 [HERE](http://qingwei-li.github.io/vue-region-picker/demo.html)
 
 ## Requirements
-- [Vue ^1.0.16](https://github.com/vuejs/vue)
+- [Vue ^1.0.12](https://github.com/vuejs/vue)
 
 ## Install
 - npm
