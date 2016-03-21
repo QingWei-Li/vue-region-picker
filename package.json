@@ -19,16 +19,13 @@
     "china",
     "picker"
   ],
-  "author": "qingwei.li<cinwell.li@gmail.com>",
+  "author": "qingwei-li<cinwell.li@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git@github.com:QingWei-Li/vue-region-picker.git"
   },
   "readmeFilename": "README.md",
   "license": "WTFPL",
-  "peerDependencies": {
-    "vue": "^1.0.12"
-  },
   "devDependencies": {
     "babel-core": "^5.8.34",
     "babel-loader": "^5.4.0",
@@ -61,10 +58,12 @@
     "phantomjs": "^1.9.19",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0",
+    "vue": "^1.0.12",
     "vue-hot-reload-api": "^1.2.2",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^6.0.5",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
-  }
+  },
+  "dependencies": {}
 }
