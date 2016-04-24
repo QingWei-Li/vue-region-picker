@@ -1,6 +1,6 @@
 {
   "name": "vue-region-picker",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A Vue.js Component for picking provinces, cities and districts of China.",
   "scripts": {
     "start": "webpack-dev-server --inline --env=dev --hot --quiet --port 2333",
