@@ -20,7 +20,6 @@
  *
  */
 module.exports = {
-  version: '2.0.1',
   name: 'RegionPicker',
   props: {
     province: {
@@ -34,18 +33,11 @@ module.exports = {
     district: {
       twoWay: true
     },
-    twoSelect: {
-      type: Boolean,
-      default: false
-    },
-    auto: {
-      type: Boolean,
-      default: false
-    },
-    completed: {
-      type: Boolean,
-      default: false
-    },
+    twoSelect: Boolean,
+    auto: Boolean,
+    completed: Boolean,
+    required: Boolean,
+    disabled: Boolean,
     placeholder: {
       type: Object,
       default () {
@@ -55,14 +47,6 @@ module.exports = {
           district: '请选择'
         }
       }
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
     },
     data: {
       type: Object,

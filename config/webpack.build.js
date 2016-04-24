@@ -24,7 +24,6 @@ module.exports = Object.assign({}, baseConfig, {
         warnings: false
       }
     }),
-    new webpack.BannerPlugin('vue-region-picker\n(c) 2015 Cinwell Li\nReleased under the MIT License.'),
     new webpack.optimize.OccurenceOrderPlugin()
   ]
 })
