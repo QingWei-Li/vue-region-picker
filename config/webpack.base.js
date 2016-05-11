@@ -3,7 +3,7 @@ var path = require('path')
 module.exports = {
   devServer: {
     port: 2333,
-    contentBase: path.join(__dirname, '/../src/'),
+    contentBase: path.join(__dirname, '../example/'),
     publicPath: '/dist/'
   },
   module: {

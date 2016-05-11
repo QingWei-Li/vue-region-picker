@@ -1,15 +1,18 @@
 import Vue from 'vue'
-import region from './china-region.json'
-import RegionPicker from './vue-region-picker.vue'
+import region from '../src/china-region.json'
+import RegionPicker from '../src/index.js'
 
 Vue.config.debug = true
+Vue.use(RegionPicker, {
+  region: region
+})
+
+// RegionPicker.region = region
 
 new Vue({ // eslint-disable-line
   el: 'body',
   replace: false,
-  components: {
-    RegionPicker
-  },
+  // components: { RegionPicker },
   data () {
     return {
       address: {
@@ -18,8 +21,5 @@ new Vue({ // eslint-disable-line
         district: ''
       }
     }
-  },
-  created () {
-    this.region = region
   }
 })

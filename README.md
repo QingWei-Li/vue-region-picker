@@ -1,11 +1,9 @@
-
 #vue-region-picker
-
 [![Build Status](https://travis-ci.org/QingWei-Li/vue-region-picker.svg)](https://travis-ci.org/QingWei-Li/vue-region-picker)
 [![Coverage Status](https://coveralls.io/repos/QingWei-Li/vue-region-picker/badge.svg?branch=master&service=github)](https://coveralls.io/github/QingWei-Li/vue-region-picker?branch=master)
-[![NPM](https://nodei.co/npm/vue-region-picker.png)](https://nodei.co/npm/vue-region-picker/)
+[![npm](https://img.shields.io/npm/v/vue-region-picker.svg?maxAge=2592000)](https://www.npmjs.com/package/vue-region-picker)
 
-A Vue.js Component for picking provinces, cities and districts of China.
+> A Vue.js Component for picking provinces, cities and districts of China.
 
 ## Demo
 [HERE](http://qingwei-li.github.io/vue-region-picker/demo.html)
@@ -27,10 +25,9 @@ $ npm install vue-region-picker --save
 ```html
 <body>
   <region-picker
-    :province.sync="region.province"
-    :city.sync="region.city"
-    :district.sync="region.district"
-    :data="regionData">
+    :province.sync="province"
+    :city.sync="city"
+    :district.sync="district">
   </region-picker>
 </body>
 ```
@@ -38,28 +35,53 @@ $ npm install vue-region-picker --save
 - javascript
 
 ```javascript
-var Vue = require('Vue');
-var RegionPicker = require('vue-region-picker');
-var REGION_DATA = require('vue-region-picker/data');
+import Vue from 'vue'
+import RegionPicker from 'vue-region-picker'
+import REGION_DATA from 'vue-region-picker/data'
+
+Vue.use(RegionPicker, {
+  region: REGION_DATA
+})
 
 new Vue({
   el: 'body',
-  data: {
-    region: {
-      provice: '广东', // you can set initial value or not.
+
+  data () {
+    return {
+      province: '广东', // you can set initial value or not.
       city: 440100, // by code or name.
-    },
-  },
-  created() {
-    this.regionData = REGION_DATA;
-  },
-  components: { RegionPicker }
-});
+      district: ''
+    }
+  }
+})
 ```
 
+Or
+
+```javascript
+import Vue from 'vue'
+import RegionPicker from 'vue-region-picker'
+import REGION_DATA from 'vue-region-picker/data'
+
+RegionPicker.region = REGION_DATA
+
+new Vue({
+  el: 'body',
+
+  data () {
+    return {
+      province: '广东', // you can set initial value or not.
+      city: 440100, // by code or name.
+      district: ''
+    }
+  },
+
+  components: { RegionPicker }
+})
+```
 
 ## Properties
-### `provice`
+### `province`
 - Type: `Number/String`
 - Required: `true`
 - twoWay: `true`
@@ -78,13 +100,6 @@ Bind city. You can set the initial value or not. Set the initial value by `(numb
 - twoWay: `true`
 
 Bind district. You can set the initial value or not. Set the initial value by `(number)code` or `(string)name`.
-
-### `data`
-- Required: `true`
-- Type: `Object`
-
-China Region data. Of course, you can customize.
-Data Source: [https://github.com/fengyuanchen/distpicker](https://github.com/fengyuanchen/distpicker)
 
 ### `placeholder`
 - Type: `Object`
@@ -123,6 +138,29 @@ disabled attribute
 - Default: `false`
 
 If true, display only `province` and `city`
+
+## Slot
+- province
+- city
+- district
+
+example
+```javascript
+<region-picker
+  :province.sync="address.province"
+  :city.sync="address.city"
+  :district.sync="address.district"
+  :data='region'>
+  <span slot="province">省份</span>
+  <span slot="city">城市</span>
+  <span slot="district">地区</span>
+</region-picker>
+```
+
+## Development
+```shell
+$ npm start
+```
 
 ## Testing and Building
 

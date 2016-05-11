@@ -1,7 +1,6 @@
 <script>
 /**
  * vue-region-picker
- * @version 2.0.1
  * @author qingwei.li<cinwel.li@gmail.com>
  * @date 2015-12-17
  *
@@ -10,7 +9,6 @@
  * @param {string} province - province field is required.
  * @param {string} city - city field is required.
  * @param {string} district - district field is required.
- * @param {object} data - data field is required.
  * @param {object} [placeholder] - placeholder
  * @param {boolean} [two-select] - only province, city
  * @param {boolean} [auto] - auto display select element
@@ -38,6 +36,9 @@ module.exports = {
     completed: Boolean,
     required: Boolean,
     disabled: Boolean,
+    rootCode: {
+      default: '000000'
+    },
     placeholder: {
       type: Object,
       default () {
@@ -47,17 +48,13 @@ module.exports = {
           district: '请选择'
         }
       }
-    },
-    data: {
-      type: Object,
-      required: true
     }
   },
 
   methods: {
     _filter (pid) {
       const result = []
-      const items = this.data[pid]
+      const items = this.$options.region[pid]
 
       for (let code in items) {
         result.push([parseInt(code, 10), items[code]])
@@ -103,7 +100,7 @@ module.exports = {
 
   computed: {
     provinces () {
-      return this._filter('86')
+      return this._filter(this.rootCode)
     },
 
     cities () {
@@ -116,7 +113,7 @@ module.exports = {
 
     provinceSelected: {
       get () {
-        return this._selected('86', this.$get('province'))
+        return this._selected(this.rootCode, this.$get('province'))
       },
 
       set (value) {
