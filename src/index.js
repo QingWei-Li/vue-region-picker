@@ -1,7 +1,8 @@
-var RegionPicker = require('./vue-region-picker.vue')
+import RegionPicker from './vue-region-picker'
 
-RegionPicker.install = function (Vue, { region }) {
+RegionPicker.install = (Vue, { region }) => {
   RegionPicker.region = region
   Vue.component(RegionPicker.name, RegionPicker)
 }
+
 module.exports = RegionPicker

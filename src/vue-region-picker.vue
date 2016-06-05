@@ -17,7 +17,7 @@
  * @param {boolean} [required] - required
  *
  */
-module.exports = {
+export default {
   name: 'RegionPicker',
   props: {
     province: {

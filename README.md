@@ -1,12 +1,11 @@
 #vue-region-picker
 [![Build Status](https://travis-ci.org/QingWei-Li/vue-region-picker.svg)](https://travis-ci.org/QingWei-Li/vue-region-picker)
-[![Coverage Status](https://coveralls.io/repos/QingWei-Li/vue-region-picker/badge.svg?branch=master&service=github)](https://coveralls.io/github/QingWei-Li/vue-region-picker?branch=master)
 [![npm](https://img.shields.io/npm/v/vue-region-picker.svg?maxAge=2592000)](https://www.npmjs.com/package/vue-region-picker)
 
 > A Vue.js Component for picking provinces, cities and districts of China.
 
 ## Demo
-[HERE](http://qingwei-li.github.io/vue-region-picker/demo.html)
+[HERE](http://qingwei-li.github.io/vue-region-picker)
 
 ## Requirements
 - [Vue ^1.0.12](https://github.com/vuejs/vue)
@@ -159,14 +158,14 @@ example
 
 ## Development
 ```shell
-$ npm start
+$ npm run dev
 ```
 
 ## Testing and Building
 
 ```shell
 $ npm test
-$ npm run build
+$ npm run dist
 ```
 
 ## License
