@@ -1,6 +1,6 @@
 {
   "name": "vue-region-picker",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "A Vue.js Component for picking provinces, cities and districts of China.",
   "scripts": {
     "dev": "cooking watch -c cooking.demo.js",
