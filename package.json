@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cooking watch -c cooking.demo.js",
     "dist": "cooking build",
-    "test": "npm run dist && ava",
+    "test": "ava",
     "deploy": "gh-pages -d example/dist",
     "watch:test": "cooking watch | ava -wv"
   },
