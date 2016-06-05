@@ -2,4 +2,8 @@ node_modules
 .coveralls.yml
 coverage
 *.sublime-project
-npm-debug.log
+.nyc_output
+*.log
+.idea
+.DS_Store
+bin

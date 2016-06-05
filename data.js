@@ -1,2 +1,1 @@
-var ChinaRegion = require('./dist/data')
-module.exports = ChinaRegion
+module.exports = require('./dist/data.js')
