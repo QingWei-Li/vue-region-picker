@@ -1,14 +1,15 @@
 # vue-region-picker
 [![Build Status](https://travis-ci.org/QingWei-Li/vue-region-picker.svg)](https://travis-ci.org/QingWei-Li/vue-region-picker)
 [![npm](https://img.shields.io/npm/v/vue-region-picker.svg?maxAge=3600)](https://www.npmjs.com/package/vue-region-picker)
+![](https://badge-size.herokuapp.com/qingwei-li/vue-region-picker/master/dist/app.js)
 
 > A Vue.js Component for picking provinces, cities and districts of China.
 
 **Supports both Vue 1.x and 2.0!**
 
 ## Demo
-[Vue1.x](http://qingwei-li.github.io/vue-region-picker)
-[Vue2.0](http://qingwei-li.github.io/vue-region-picker/vue2)
+- [Vue1.x](http://qingwei-li.github.io/vue-region-picker)
+- [Vue2.0](http://qingwei-li.github.io/vue-region-picker/vue2)
 
 ## Requirements
 - [Vue ^1.0.12](https://github.com/vuejs/vue)
@@ -125,8 +126,7 @@ new Vue({
 <region-picker
   :province.sync="address.province"
   :city.sync="address.city"
-  :district.sync="address.district"
-  :data='region'>
+  :district.sync="address.district">
   <span slot="province">省份</span>
   <span slot="city">城市</span>
   <span slot="district">地区</span>
