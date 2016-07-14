@@ -2,7 +2,7 @@ import 'github-markdown-css'
 import 'highlight.js/styles/github.css'
 
 import Vue from 'vue'
-import Demo from './demo.md'
+import Demo from './demo.vue2.md'
 import region from 'china-area-data'
 import RegionPicker from 'vue-region-picker'
 
@@ -12,7 +12,7 @@ Vue.use(RegionPicker, {
 })
 
 new Vue({ // eslint-disable-line
-  el: 'body',
+  el: '#app',
   components: {
     App: {
       template: `<div class="markdown-body">${Demo}</div>`,

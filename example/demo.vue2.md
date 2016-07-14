@@ -1,11 +1,13 @@
-# vue-region-picker demo
+# vue-region-picker demo - Vue2.0
 
 ## Basic
 
+Vue2 取消了双向绑定，无法再使用 sync 同步，因此这里通过 onchange 获取选中的数据，返回结果类似 `{ "district": [ 440105, "海珠区" ], "city": [ 440100, "广州市" ], "province": [ 440000, "广东省" ] }`
+
 <region-picker
-  :province.sync="region1.province"
-  :city.sync="region1.city"
-  :district.sync="region1.district"
+  :province="region1.province"
+  :city="region1.city"
+  :district="region1.district"
   @onchange="change">
 </region-picker>
 
@@ -14,9 +16,9 @@ html
 
 ```html
 <region-picker
-  :province.sync="region.province"
-  :city.sync="region.city"
-  :district.sync="region.district"
+  :province="region.province"
+  :city="region.city"
+  :district="region.district"
   @onchange="change">
 </region-picker>
 ```
@@ -34,7 +36,7 @@ Vue.use(RegionPicker, {
 })
 
 new Vue({
-  el: 'body',
+  el: '#app',
 
   data: {
     return {
@@ -47,18 +49,18 @@ new Vue({
 ## Auto display
 <region-picker
   auto
-  :province.sync="region2.province"
-  :city.sync="region2.city"
-  :district.sync="region2.district"
+  :province="region2.province"
+  :city="region2.city"
+  :district="region2.district"
   @onchange="change">
 </region-picker>
 
 ```html
 <region-picker
   auto
-  :province.sync="region.province"
-  :city.sync="region.city"
-  :district.sync="region.district"
+  :province="region.province"
+  :city="region.city"
+  :district="region.district"
   @onchange="change">
 </region-picker>
 ```
@@ -67,13 +69,13 @@ new Vue({
 ## Set initial value
 
 <region-picker
-  :province.sync="region3.province"
-  :city.sync="region3.city"
-  :district.sync="region3.district"
+  :province="region3.province"
+  :city="region3.city"
+  :district="region3.district"
   @onchange="change">
 </region-picker>
 
-<label for="">同时支持双向绑定</label>
+<label for="">单项绑定赋值</label>
 <input type="text" v-model="region3.province">
 <input type="text" v-model="region3.city">
 <input type="text" v-model="region3.district"
@@ -84,9 +86,9 @@ html
 
 ```html
 <region-picker
-  :province.sync="region.province"
-  :city.sync="region.city"
-  :district.sync="region.district"
+  :province="region.province"
+  :city="region.city"
+  :district="region.district"
   @onchange="change">
 </region-picker>
 ```
@@ -104,7 +106,7 @@ Vue.use(RegionPicker, {
 })
 
 new Vue({
-  el: 'body',
+  el: '#app',
 
   data: {
     return {
@@ -121,9 +123,9 @@ new Vue({
 ## Set placeholder
 <region-picker
   :placeholder="{province: '选择省份', city: '选择市', district: '选择地区'}"
-  :province.sync="region4.province"
-  :city.sync="region4.city"
-  :district.sync="region4.district"
+  :province="region4.province"
+  :city="region4.city"
+  :district="region4.district"
   @onchange="change">
 </region-picker>
 
@@ -131,9 +133,9 @@ html
 ```html
 <region-picker
   :placeholder="{province: '选择省份', city: '选择市', district: '选择地区'}"
-  :province.sync="region.province"
-  :city.sync="region.city"
-  :district.sync="region.district"
+  :province="region.province"
+  :city="region.city"
+  :district="region.district"
   @onchange="change">
 </region-picker>
 ```
@@ -142,8 +144,8 @@ html
 
 <region-picker
   two-select
-  :province.sync="region5.province"
-  :city.sync="region5.city"
+  :province="region5.province"
+  :city="region5.city"
   @onchange="change">
 </region-picker>
 
@@ -151,8 +153,8 @@ html
 ```html
 <region-picker
   two-select
-  :province.sync="region.province"
-  :city.sync="region.city"
+  :province="region.province"
+  :city="region.city"
   @onchange="change">
 </region-picker>
 ```

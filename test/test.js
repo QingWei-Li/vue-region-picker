@@ -1,7 +1,7 @@
 import test from 'ava'
 import Vue from 'vue'
-import RegionPicker from '../dist/main.js'
-import region from '../dist/data.js'
+import { RegionPicker } from '../dist/app.js'
+import region from 'china-area-data'
 import _ from 'lodash'
 
 const getVM = function (attr) {
@@ -134,7 +134,7 @@ test('Set "auto" attribute: district select is hidden when province select is ch
       resolve($(vm.$el).find('label[style!="display: none;"]').length)
     })
   }).then(result => {
-    t.is(result, 2)
+    t.is(result, 1)
     vm.$destroy()
   })
 })
