@@ -1,16 +1,13 @@
 var cooking = require('cooking')
 
 cooking.set({
-  entry: {
-    main: './src/index.js',
-    data: './src/china-region.json'
-  },
+  entry: './src/entry.js',
   clean: true,
   template: false,
   dist: './dist',
   format: 'umd',
-  moduleName: ['RegionPicker', '[name]'],
-  extends: ['vue', 'lint']
+  moduleName: 'RegionPicker',
+  extends: ['lint']
 })
 
 module.exports = cooking.resolve()

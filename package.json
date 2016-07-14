@@ -4,16 +4,15 @@
   "description": "A Vue.js Component for picking provinces, cities and districts of China.",
   "scripts": {
     "dev": "cooking watch -c cooking.demo.js",
-    "dist": "cooking build",
+    "dist": "cooking build -p",
     "test": "ava",
     "deploy": "gh-pages -d example/dist",
     "watch:test": "cooking watch | ava -wv"
   },
-  "main": "dist/main.js",
+  "main": "dist/app.js",
   "files": [
     "dist",
-    "src",
-    "data.js"
+    "src"
   ],
   "keywords": [
     "vue",
@@ -49,14 +48,15 @@
   "devDependencies": {
     "ava": "^0.15.1",
     "babel-preset-es2015": "^6.9.0",
+    "china-area-data": "^1.0.0",
     "gh-pages": "^0.11.0",
     "github-markdown-css": "^2.3.0",
-    "highlight.js": "^9.4.0",
+    "highlight-loader": "^0.7.2",
     "jquery": "^2.2.4",
     "jsdom": "^9.2.1",
     "lodash": "^4.13.1",
-    "vue": "^1.0.24",
-    "vue-markdown-loader": "^0.1.5"
+    "markdown-loader": "^0.1.7",
+    "vue": "^1.0.26"
   },
   "dependencies": {}
 }

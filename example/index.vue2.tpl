@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>vue-region-picker demo</title>
+  <title>vue-region-picker demo - Vue2.0</title>
   <style>
   .markdown-body {
     box-sizing: border-box;
@@ -15,7 +15,9 @@
 </style>
 </head>
 <body>
-  <app></app>
-  <script src="//github.elemecdn.com/uglifyjs!vuejs/vue/v1.0.26/dist/vue.js"></script>
+  <div id="app">
+    <app></app>
+  </div>
+  <script src="//github.elemecdn.com/uglifyjs!vuejs/vue/v2.0.0-alpha.8/dist/vue.js"></script>
 </body>
 </html>

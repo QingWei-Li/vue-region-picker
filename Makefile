@@ -1,5 +1,7 @@
 .PHONY: dist test
 
+defualt: dev
+
 dev:
 	npm run dev
 
