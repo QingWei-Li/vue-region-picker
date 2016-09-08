@@ -79,6 +79,7 @@ export default {
     },
     // data model: [code, name]
     _searchIndex (items, model, by) {
+      if (!model) return -1
       // by name
       if (by === 1) {
         for (let key in items) {
