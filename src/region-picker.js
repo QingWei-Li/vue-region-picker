@@ -55,6 +55,15 @@ export default {
   methods: {
     change (field, value) {
       this[field] = value.split(',')
+
+      if (field == 'provinceSelected') {
+        this.citySelected = ''
+        this.districtSelected = ''
+      }
+      if (field == 'citySelected') {
+        this.districtSelected = ''
+      }
+
       if (this.completed) {
         this.$emit('onchange', {
           province: this.provinceSelected,
