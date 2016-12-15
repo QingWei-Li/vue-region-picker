@@ -146,14 +146,12 @@ export default {
     },
     citySelected: {
       get () {
-        console.log(this.provinceSelected[0], this.current.city, this.city)
         return this._selected(this.provinceSelected[0], this.current.city || this.city)
       },
       set (value) {
         if (!this.isVueNext) {
           this.city = this.completed ? value : value[1]
         } else {
-          console.log(this.current.city)
           this.current.city = value
         }
       }
