@@ -56,11 +56,11 @@ export default {
     change (field, value) {
       this[field] = value.split(',')
 
-      if (field == 'provinceSelected') {
+      if (field === 'provinceSelected') {
         this.citySelected = ''
         this.districtSelected = ''
       }
-      if (field == 'citySelected') {
+      if (field === 'citySelected') {
         this.districtSelected = ''
       }
 
