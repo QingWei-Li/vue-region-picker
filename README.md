@@ -1,7 +1,13 @@
+## ⚠️ **DEPRECATED** ⚠️
+
+This code is very 💩, I do not want to maintain it. 👋
+
 # vue-region-picker
 [![Build Status](https://travis-ci.org/QingWei-Li/vue-region-picker.svg)](https://travis-ci.org/QingWei-Li/vue-region-picker)
 [![npm](https://img.shields.io/npm/v/vue-region-picker.svg?maxAge=3600)](https://www.npmjs.com/package/vue-region-picker)
 ![](https://badge-size.herokuapp.com/qingwei-li/vue-region-picker/master/dist/app.js)
+
+
 
 > A Vue.js Component for picking provinces, cities and districts of China.
 
@@ -27,7 +33,7 @@ $ npm install vue-region-picker china-area-data --save
 html
 
 ```html
-<body>
+<div id="#app">
   <!-- Vue1.x -->
   <region-picker
     :province.sync="province"
@@ -41,7 +47,7 @@ html
     :district="district"
     @onchange="change">
   </region-picker>
-</body>
+</div>
 ```
 
 javascript
@@ -52,13 +58,12 @@ import RegionPicker from 'vue-region-picker'
 import REGION_DATA from 'china-area-data'
 
 Vue.use(RegionPicker, {
-  region: REGION_DATA,
-  vueVersion: 1 // or 2, default 1
+  region: REGION_DATA
 })
 
 // Vue1.x
 new Vue({
-  el: 'body',
+  el: '#app',
 
   data () {
     return {
@@ -78,10 +83,9 @@ import { RegionPicker } from 'vue-region-picker'
 import REGION_DATA from 'china-area-data'
 
 RegionPicker.region = REGION_DATA
-// RegionPicker.vueVersion = 1 // or 2, default 1
 
 new Vue({
-  el: 'body',
+  el: '#app',
 
   data () {
     return {
@@ -99,7 +103,6 @@ new Vue({
 | name               | description                                              | Type                | default Value |
 |--------------------|----------------------------------------------------------|-------------------|-------------|
 | region | region data | Object | - |
-| vueVersion | vue version, 1 or 2 | Number | 1 |
 
 ## Props
 | name               | description                                              | Type                | default Value |
@@ -135,7 +138,6 @@ new Vue({
 
 ## Development
 ```shell
-$ npm i cooking -g
 $ npm run dev
 ```
 
