@@ -1,5 +1,7 @@
 ## ⚠️ **DEPRECATED** ⚠️
 
+**You Need https://github.com/ElementUI/region-picker**
+
 This code is very 💩, I do not want to maintain it. 👋
 
 # vue-region-picker
